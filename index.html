@@ -2,30 +2,43 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link href='https://fonts.googleapis.com/css?family=Anonymous+Pro' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Nova+Mono' rel='stylesheet' type='text/css'>
     <title>It's a final countdown</title>
   </head>
   <body>
+    <div class="mainstyle style2"> time waits for no one. </div>
+    <div class="mainstyle style3"> University Of Tokyo's master examination </div>
     <div id="clockdiv" class="mainstyle style1">
-    </div>
-    <div class="mainstyle style2">
-      time waits for no one.
     </div>
   </body>
   <style media="screen">
     body {
-      background: black;
+      background-image: url('https://static.pexels.com/photos/1240/road-street-blur-blurred.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
     }
     .mainstyle {
       color: white;
-      font-family: 'Anonymous Pro', monospace;
+      font-family: 'Nova Mono', monospace;
       display: table;
       margin: 0 auto;
     }
 
     .style1 {
-      font-weight: bold;
       font-size: 100px;
+    }
+
+    .style2 {
+      font-size: 21px;
+      letter-spacing: 0.2em;
+    }
+
+    .style3 {
+      font-size: 15px;
+    }
+
+    .small {
+      font-size: 30px;
     }
   </style>
   <script type="text/javascript">
@@ -49,10 +62,10 @@
       var clock = document.getElementById(id);
       var timeinterval = setInterval(function(){
         var t = getTimeRemaining(endtime);
-        clock.innerHTML = 'days: ' + t.days + '<br>' +
-                          'hours: '+ t.hours + '<br>' +
-                          'minutes: ' + t.minutes + '<br>' +
-                          'seconds: ' + t.seconds;
+        clock.innerHTML = t.days + '<br><div class="small">Days</div>' +
+                          t.hours + '<br><div class="small">Hours</div>' +
+                          t.minutes + '<br><div class="small">Minutes</div>' +
+                          t.seconds + '<br><div class="small">Seconds</div>';
         if(t.total<=0){
           clearInterval(timeinterval);
         }
