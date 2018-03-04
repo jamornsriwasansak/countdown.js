@@ -108,7 +108,7 @@
 	  var yearPercentage = (todayDate - thisNewYearDate) / (nextNewYearDate - thisNewYearDate) * 100;
 	  var monthPercentage = (todayDate - thisMonthDate) / (nextMonthDate - thisMonthDate) * 100;
 	  var timeinterval = setTimeout(updateRunningPercentage, 100);
-	  clock.innerHTML = '<br><div class="smaller">This week</div>' + Number.parseFloat(yearPercentage).toFixed(6) + '%<br>' +
+	  clock.innerHTML = '<br><div class="smaller">This year</div>' + Number.parseFloat(yearPercentage).toFixed(6) + '%<br>' +
 						'<div class="smaller">This month</div>' + Number.parseFloat(monthPercentage).toFixed(6) + '%<br>';
 	}
 	updateRunningPercentage('clockdiv');
