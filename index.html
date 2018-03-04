@@ -3,12 +3,11 @@
   <head>
     <meta charset="utf-8">
     <link href='https://fonts.googleapis.com/css?family=Nova+Mono' rel='stylesheet' type='text/css'>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>It's a final countdown</title>
   </head>
   <body>
-    <div class="mainstyle style2"> time is passing. are you?. </div>
-    <div class="mainstyle style3"> University Of Tokyo's master examination </div>
+    <div class="mainstyle style2"> time waits for no one. </div>
+    <div class="mainstyle style3"> How much time I have left? </div>
     <div id="clockdiv" class="mainstyle style1">
     </div>
   </body>
@@ -30,19 +29,41 @@
     }
 
     .style2 {
-      font-size: 15px;
+      font-size: 21px;
       letter-spacing: 0.2em;
     }
 
     .style3 {
-      font-size: 10px;
+      font-size: 15px;
     }
 
+	.smaller {
+	  font-size: 20px;
+	}
+	
     .small {
       font-size: 30px;
     }
   </style>
   <script type="text/javascript">
+    var clock = document.getElementById('clockdiv');
+
+	function getNextNewYearDate(todayDate){
+	  return new Date(todayDate.getFullYear() + 1, "1", "1");
+	}
+	
+	function getThisNewYearDate(todayDate){
+	  return new Date(todayDate.getFullYear(), "1", "1");
+	}
+	
+	function getNextMonthDate(todayDate){
+	  return new Date(todayDate.getFullYear(), todayDate.getMonth() + 1, "1");
+	}
+
+	function getThisMonthDate(todayDate){
+	  return new Date(todayDate.getFullYear(), todayDate.getMonth(), "1");
+	}
+	
     // src: http://www.sitepoint.com/build-javascript-countdown-timer-no-dependencies/
     function getTimeRemaining(endtime){
       var t = Date.parse(endtime) - Date.parse(new Date());
@@ -59,10 +80,12 @@
       };
     }
 
+    // javascript code for this function is outdated 
+	// Still, the code was kept as momento
     function initializeClock(id, endtime){
       var clock = document.getElementById(id);
-      var timeinterval = setInterval(function(){
-        var t = getTimeRemaining(endtime);
+      var timeinterval = setTimeout(function(){
+		var t = getTimeRemaining(endtime);
         clock.innerHTML = t.days + '<br><div class="small">Days</div>' +
                           t.hours + '<br><div class="small">Hours</div>' +
                           t.minutes + '<br><div class="small">Minutes</div>' +
@@ -72,7 +95,23 @@
         }
       },1000);
     }
-
-    initializeClock('clockdiv', '2016-8-22');
+    // initializeClock('clockdiv', '2016-8-22');
+	
+	function updateRunningPercentage(){
+	  var todayDate = new Date();
+	  var thisNewYearDate = getThisNewYearDate(todayDate);
+	  var nextNewYearDate = getNextNewYearDate(todayDate);
+	  
+	  var thisMonthDate = getThisMonthDate(todayDate);
+	  var nextMonthDate = getNextMonthDate(todayDate);
+	  
+	  var yearPercentage = (todayDate - thisNewYearDate) / (nextNewYearDate - thisNewYearDate) * 100;
+	  var monthPercentage = (todayDate - thisMonthDate) / (nextMonthDate - thisMonthDate) * 100;
+	  var timeinterval = setTimeout(updateRunningPercentage, 100);
+	  clock.innerHTML = '<br><div class="smaller">This week</div>' + Number.parseFloat(yearPercentage).toFixed(6) + '%<br>' +
+						'<div class="smaller">This month</div>' + Number.parseFloat(monthPercentage).toFixed(6) + '%<br>';
+	}
+	updateRunningPercentage('clockdiv');
+	
   </script>
 </html>
