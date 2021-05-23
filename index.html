@@ -83,7 +83,6 @@
     // javascript code for this function is outdated 
 	// Still, the code was kept as momento
     function update2(id, endtime){
-      var clock = document.getElementById(id);
       var timeinterval = setTimeout(update2, 100);
 	var t = getTimeRemaining(endtime);
         clock.innerHTML = t.days + '<br><div class="small">Days</div>' +
