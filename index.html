@@ -82,18 +82,14 @@
 
     // javascript code for this function is outdated 
 	// Still, the code was kept as momento
-    function initializeClock(id, endtime){
+    function update2(id, endtime){
       var clock = document.getElementById(id);
-      var timeinterval = setTimeout(function(){
-		var t = getTimeRemaining(endtime);
+      var timeinterval = setTimeout(update2, 100);
+	var t = getTimeRemaining(endtime);
         clock.innerHTML = t.days + '<br><div class="small">Days</div>' +
                           t.hours + '<br><div class="small">Hours</div>' +
                           t.minutes + '<br><div class="small">Minutes</div>' +
                           t.seconds + '<br><div class="small">Seconds</div>';
-        if(t.total<=0){
-          clearInterval(timeinterval);
-        }
-      },1000);
     }
     initializeClock('clockdiv', '03 Jun 2021 00:00:00 GMT');
 	
