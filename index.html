@@ -80,17 +80,17 @@
       };
     }
 
-    // javascript code for this function is outdated 
-	// Still, the code was kept as momento
-    function update2(id, endtime){
-      var timeinterval = setTimeout(update2, 100);
+var endtime = '03 Jun 2021 00:00:00 GMT';
+	  
+    function update2(){
+      var timeinterval = setTimeout(update2, 1000);
 	var t = getTimeRemaining(endtime);
         clock.innerHTML = t.days + '<br><div class="small">Days</div>' +
                           t.hours + '<br><div class="small">Hours</div>' +
                           t.minutes + '<br><div class="small">Minutes</div>' +
                           t.seconds + '<br><div class="small">Seconds</div>';
     }
-    update2('clockdiv', '03 Jun 2021 00:00:00 GMT');
+    update2();
 	
 	function updateRunningPercentage(){
 	  var todayDate = new Date();
